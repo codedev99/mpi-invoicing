@@ -43,16 +43,7 @@ def productDetailsPage():
         print("here3")
         print(form.productname.data.product_name)
         print(form.productrate.data)
-    return render_template('product-details2.html', form=form)
-
-@main.route('/has-product-name')
-def hasProductName():
-    print("here1")
-    id = request.args.get("productname", type=int)
-    product = ProductList.query.filter_by(id=id).first()
-    print(product.hsn, product.rate)
-
-    return render_template('has-product-name.html', hsn = product.hsn, rate=product.rate)
+    return render_template('product-details.html', form=form)
 
 @main.route('/has-product-quantity')
 def hasProductQuantity():
@@ -63,3 +54,44 @@ def hasProductQuantity():
     print(price)
 
     return render_template('has-product-quantity.html', price=price)
+
+def fetchValues():
+    print("Here")
+    fields = [{"key":"productname", "type":int}, {"key":"producthsn", "type":str},
+              {"key":"productrate", "type":float}, {"key":"productquantity", "type":int},
+              {"key":"productprice", "type":float}, {"key":"productdiscount", "type":float},
+              {"key":"productvalue", "type":float}]
+    values = []
+    for fieldarg in fields:
+        values.append(request.args.get(**fieldarg))
+    
+    return values
+
+def calcValues(values):
+    if values[2] != None and values[3] != None:
+        values[4] = values[2] * values[3]
+        values[6] = values[4]
+        if values[5] != None:
+            values[6] -= values[5]
+    else:
+        values[4] = None
+        values[6] = None
+    
+    return values
+
+@main.route('/productname-revalidate')
+def productnameRevalidate():
+    values = fetchValues()
+    product = ProductList.query.filter_by(id=values[0]).first()
+    values[1] = product.hsn
+    values[2] = product.rate
+    values = calcValues(values)
+
+    return render_template("rerender-product-details.html", values=values)
+
+@main.route('/productrate-revalidate')
+def productrateRevalidate():
+    values = fetchValues()
+    values = calcValues(values)
+
+    render_template("rerender-product-details.html", values=values)
