@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+<h1>Invoice Details</h1>
+<br/>
+<form method="POST" id="product-details">
+    <table>
+        <tr>
+            <td style="width: 200px;">
+                <table style="width: 100%;">
+                    <tr><th>{{ form.productname.label(class="form-label") }}</th></tr>
+                    <tr><td>{{ form.productname(**{"style": "width:100%;", "hx-get":"/has-product-name", "hx-target": "#hasproductname"}) }}</td></tr>
+                </table>
+            </td>
+            <td>
+                <table id="hasproductname">
+                    <tr>
+                        <th>{{ form.producthsn.label(class="form-label") }}</th>
+                        <th>{{ form.productrate.label(class="form-label") }}</th>
+                    </tr>
+                    <tr>
+                        <td>{{ form.producthsn }}</td>
+                        <td>{{ form.productrate }}</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr><th>{{ form.productquantity.label(class="form-label") }}</th></tr>
+                    <tr><td>{{ form.productquantity(**{"hx-get": "/has-product-quantity", "hx-include": "#product-details", "hx-target": "#hasproductquantity"}) }}</td></tr>
+                </table>
+            </td>
+            <td>
+                <table id="hasproductquantity">
+                    <tr><th>{{ form.productprice.label(class="form-label") }}</th></tr>
+                    <tr><td>{{ form.productprice }}</td></tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr><th>{{ form.productdiscount.label(class="form-label") }}</th></tr>
+                    <tr><td>{{ form.productdiscount }}</td></tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr><th>{{ form.productvalue.label(class="form-label") }}</th></tr>
+                    <tr><td>{{ form.productvalue }}</td></tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr><th class="form-label"></th></tr>
+                    <tr><td>{{ form.submit(style="margin-top: 50%;") }}</td></tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}

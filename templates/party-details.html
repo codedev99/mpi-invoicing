@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+<h1>Party Details</h1>
+<br/>
+<form method="POST" name="party-details">
+    <table>
+        <tr>
+            <td>{{form.name.label(class="form-label")}}</td>
+            <td>{{form.name()}}</td>
+        </tr>
+        <tr>
+            <td>{{form.address.label(class="form-label")}}</td>
+            <td>{{form.address()}}</td>
+        </tr>
+        <tr>
+            <td>{{form.pannumber.label(class="form-label")}}</td>
+            <td>{{form.pannumber()}}</td>
+        </tr>
+        <tr>
+            <td>{{form.phonenumber.label(class="form-label")}}</td>
+            <td>{{form.phonenumber()}}</td>
+        </tr>
+        <tr>
+            <td>{{form.gstin.label(class="form-label")}}</td>
+            <td>{{form.gstin()}}</td>
+        </tr>
+        <tr>
+            <td>{{form.submit(class="btn btn-primary")}}</td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}

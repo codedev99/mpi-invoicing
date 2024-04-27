@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+<h1>Invoice Details</h1>
+<br/>
+<form method="POST" name="invoice-details">
+    <table>
+        <tr>
+            <td>{{form.invoicenumber.label(class="form-label")}}</td>
+            <td>{{form.invoicenumber()}}</td>
+        </tr>
+        <tr>
+            <td>{{form.invoicedate.label(class="form-label")}}</td>
+            <td>{{form.invoicedate(type='date')}}</td>
+        </tr>
+        <tr>
+            <td>{{form.dateofsupply.label(class="form-label")}}</td>
+            <td>{{form.dateofsupply(type='date')}}</td>
+        </tr>
+        <tr>
+            <td>{{form.placeofsupply.label(class="form-label")}}</td>
+            <td>{{form.placeofsupply()}}</td>
+        </tr>
+        <tr>
+            <td>{{form.reversecharge.label(class="form-label")}}</td>
+            <td>{{form.reversecharge()}}</td>
+        </tr>
+        <tr>
+            <td>{{form.transportmode.label(class="form-label")}}</td>
+            <td>{{form.transportmode()}}</td>
+        </tr>
+        <tr>
+            <td>{{form.vehiclenumber.label(class="form-label")}}</td>
+            <td>{{form.vehiclenumber()}}</td>
+        </tr>
+        <tr>
+            <td>{{form.submit(class="btn btn-primary")}}</td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}
