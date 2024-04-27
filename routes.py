@@ -43,7 +43,7 @@ def productDetailsPage():
         print("here3")
         print(form.productname.data.product_name)
         print(form.productrate.data)
-    return render_template('product-details.html', form=form)
+    return render_template('product-details2.html', form=form)
 
 @main.route('/has-product-name')
 def hasProductName():
