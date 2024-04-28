@@ -1,4 +1,3 @@
-
 <tbody><tr>
     </tr></tbody><thead style="text-align: center; font-weight: bold;">
         <tr><td><label class="form-label" for="producthsn">HSN</label></td>
@@ -7,14 +6,19 @@
         <td><label class="form-label" for="productprice">Price</label></td>
         <td><label class="form-label" for="productdiscount">Discount</label></td>
         <td><label class="form-label" for="productvalue">Taxable Value</label></td>
+        <td><label class="form-label" for="productgst">Aggregate GST</label></td>
+        <td><label class="form-label" for="productamount">Amount</label></td>
     </tr></thead>
 
 <tbody><tr>
     <td><input id="producthsn" name="producthsn" type="text" value="{{ values[1] }}"></td>
-    <td><input id="productrate" name="productrate" type="text" value="{{ values[2] }}"></td>
-    <td><input id="productquantity" max="30" min="1" name="productquantity" type="number" value="{{ values[3] }}"></td>
+    <td><input hx-get="/productfields-revalidate" hx-include="#productdetailsform" hx-target="#productdetailsfields" id="productrate" name="productrate" type="text" value="{{ values[2] }}"></td>
+    <td><input hx-get="/productfields-revalidate" hx-include="#productdetailsform" hx-target="#productdetailsfields" id="productquantity" max="30" min="1" name="productquantity" type="number" value="{{ values[3] }}"></td>
     <td><input id="productprice" name="productprice" type="text" value="{{ values[4] }}"></td>
-    <td><input id="productdiscount" name="productdiscount" type="text" value="{{ values[5] }}"></td>
+    <td><input hx-get="/productfields-revalidate" hx-include="#productdetailsform" hx-target="#productdetailsfields" id="productdiscount" name="productdiscount" type="text" value="{{ values[5] }}"></td>
     <td><input id="productvalue" name="productvalue" type="text" value="{{ values[6] }}"></td>
-    <td><input id="submit" name="submit" type="submit" value="Submit"></td>
-</tr></tbody>
+    <td><input hx-get="/productfields-revalidate" hx-include="#productdetailsform" hx-target="#productdetailsfields" id="productgst" name="productgst" type="text" value="{{ values[7] }}"></td>
+    <td><input id="productamount" name="productamount" type="text" value="{{ values[8] }}"></td>
+    <td><input id="addproduct" name="addproduct" type="submit" value="Add"></td>
+</tr>
+</tbody>

@@ -1,8 +1,8 @@
 from flask import Flask
 from extensions import db
 from routes import main
-from models import ProductList
-from dbops import fill_table
+from models import ProductList, ItemsList
+from utils import fill_table
 
 def create_app():
     app = Flask(__name__)
@@ -14,10 +14,24 @@ def create_app():
     return app
 
 def add_data():
-    ProductList.__table__.drop(db.engine)
+    try:
+        ProductList.__table__.drop(db.engine)
+    except Exception as e:
+        print(e)
+    try:
+        ItemsList.__table__.drop(db.engine)
+    except Exception as e:
+        print(e)
     db.session.commit()
 
     db.create_all()
     arr = fill_table("product-list.csv")
     db.session.add_all(arr)
     db.session.commit()
+
+if __name__ == "__main__":
+    app = create_app()
+    with app.app_context():
+        add_data()
+    
+    app.run(debug=True)

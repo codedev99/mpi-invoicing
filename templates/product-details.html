@@ -8,7 +8,8 @@
 <h1>Invoice Details</h1>
 <br/>
 <form method="POST">
-    <table id="productdetailsform">
+    {{ form.csrf_token }}
+    <table id="productdetailsform">   
         <tr>
             <td>
                 <table id="productnameselect" style="width: 150px;">
@@ -23,7 +24,7 @@
                 </table>
             </td>
             <td>
-                <table id="productdetailsfields">
+                <table id="productdetailsfields" style="width: 100%;">
                     <tr>
                         <thead style="text-align: center; font-weight: bold;">
                             <td>{{ form.producthsn.label(class="form-label") }}</td>
@@ -32,21 +33,57 @@
                             <td>{{ form.productprice.label(class="form-label") }}</td>
                             <td>{{ form.productdiscount.label(class="form-label") }}</td>
                             <td>{{ form.productvalue.label(class="form-label") }}</td>
+                            <td>{{ form.productgst.label(class="form-label") }}</td>
+                            <td>{{ form.productamount.label(class="form-label") }}</td>
                         </thead>
                     </tr>
                     <tr>
                         <td>{{ form.producthsn }}</td>
-                        <td>{{ form.productrate(**{"hx-get": "/productrate-revalidate", "hx-include": "#productdetailsform", "hx-target": "#productdetailsfields"}) }}</td>
-                        <td>{{ form.productquantity }}</td>
+                        <td>{{ form.productrate(**{"hx-get": "/productfields-revalidate", "hx-include": "#productdetailsform", "hx-target": "#productdetailsfields"}) }}</td>
+                        <td>{{ form.productquantity(**{"hx-get": "/productfields-revalidate", "hx-include": "#productdetailsform", "hx-target": "#productdetailsfields"}) }}</td>
                         <td>{{ form.productprice }}</td>
-                        <td>{{ form.productdiscount }}</td>
+                        <td>{{ form.productdiscount(**{"hx-get": "/productfields-revalidate", "hx-include": "#productdetailsform", "hx-target": "#productdetailsfields"}) }}</td>
                         <td>{{ form.productvalue }}</td>
-                        <td>{{ form.submit }}</td>
+                        <td>{{ form.productgst }}</td>
+                        <td>{{ form.productamount }}</td>
+                        <td>{{ form.addproduct }}</td>
                     </tr>
                 </table>
             </td>
         </tr>
     </table>
 </form>
+<table id="itemslisttable" style="margin-top: 20px;">
+    <tr>
+        <thead style="text-align: center; font-weight: bold; border-bottom: 3px solid #aaa;">
+            <td>Name</td>
+            <td>HSN</td>
+            <td>Rate</td>
+            <td>Quantity</td>
+            <td>Price</td>
+            <td>Discount</td>
+            <td>Taxable Value</td>
+            <td>Aggregate GST (%)</td>
+            <td>Amount</td>
+        </thead>
+    </tr>
+    {% for item in itemslist %}
+    <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.hsn }}</td>
+        <td>{{ item.rate }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.discount }}</td>
+        <td>{{ item.value }}</td>
+        <td>{{ item.gst }}</td>
+        <td>{{ item.amount }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/render-invoice">
+    <button class="btn btn-primary">Submit</button>
+</a>
+
 
 {% endblock %}

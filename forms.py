@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import Form, StringField, DateTimeField,\
-    BooleanField, SubmitField, DecimalField, validators
+    BooleanField, SubmitField, FloatField, validators
 from wtforms.fields import html5 as h5fields
 from wtforms.widgets import html5 as h5widgets
 from wtforms.validators import InputRequired, Optional
@@ -52,11 +52,13 @@ class InvoiceDetailsForm(Form):
 class ProductDeatilsForm(AllForms):
     productname = QuerySelectField("Select Product",
                                    query_factory=lambda: ProductList.query.order_by(ProductList.product_name).all(),
-                                   allow_blank=True, get_label="product_name")
-    producthsn = StringField("HSN")
-    productrate = DecimalField("Rate")
-    productquantity = h5fields.IntegerField("Quantity", widget=h5widgets.NumberInput(min=1, max=30))
-    productprice = DecimalField("Price")
-    productdiscount = DecimalField("Discount")
-    productvalue = DecimalField("Taxable Value")
-    submit = SubmitField("Submit")
+                                   allow_blank=True, get_label="product_name", validators=[InputRequired()])
+    producthsn = StringField("HSN", validators=[Optional()])
+    productrate = FloatField("Rate", validators=[InputRequired()])
+    productquantity = h5fields.IntegerField("Quantity", widget=h5widgets.NumberInput(min=1, max=30), validators=[InputRequired()])
+    productprice = FloatField("Price", validators=[InputRequired()])
+    productdiscount = FloatField("Discount", validators=[Optional()])
+    productvalue = FloatField("Taxable Value", validators=[InputRequired()])
+    productgst = FloatField("Aggregate GST", validators=[InputRequired()])
+    productamount = FloatField("Amount", validators=[InputRequired()])
+    addproduct = SubmitField("Add")
