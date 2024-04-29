@@ -1,24 +1,51 @@
-<tbody><tr>
-    </tr></tbody><thead style="text-align: center; font-weight: bold;">
-        <tr><td><label class="form-label" for="producthsn">HSN</label></td>
-        <td><label class="form-label" for="productrate">Rate</label></td>
-        <td><label class="form-label" for="productquantity">Quantity</label></td>
-        <td><label class="form-label" for="productprice">Price</label></td>
-        <td><label class="form-label" for="productdiscount">Discount</label></td>
-        <td><label class="form-label" for="productvalue">Taxable Value</label></td>
-        <td><label class="form-label" for="productgst">Aggregate GST</label></td>
-        <td><label class="form-label" for="productamount">Amount</label></td>
-    </tr></thead>
+<tbody>
+    <tr class="xl6613030" height="19" style="mso-height-source:userset;height:14.25pt">
 
-<tbody><tr>
-    <td><input id="producthsn" name="producthsn" type="text" value="{{ values[1] }}"></td>
-    <td><input hx-get="/productfields-revalidate" hx-include="#productdetailsform" hx-target="#productdetailsfields" id="productrate" name="productrate" type="text" value="{{ values[2] }}"></td>
-    <td><input hx-get="/productfields-revalidate" hx-include="#productdetailsform" hx-target="#productdetailsfields" id="productquantity" max="30" min="1" name="productquantity" type="number" value="{{ values[3] }}"></td>
-    <td><input id="productprice" name="productprice" type="text" value="{{ values[4] }}"></td>
-    <td><input hx-get="/productfields-revalidate" hx-include="#productdetailsform" hx-target="#productdetailsfields" id="productdiscount" name="productdiscount" type="text" value="{{ values[5] }}"></td>
-    <td><input id="productvalue" name="productvalue" type="text" value="{{ values[6] }}"></td>
-    <td><input hx-get="/productfields-revalidate" hx-include="#productdetailsform" hx-target="#productdetailsfields" id="productgst" name="productgst" type="text" value="{{ values[7] }}"></td>
-    <td><input id="productamount" name="productamount" type="text" value="{{ values[8] }}"></td>
-    <td><input id="addproduct" name="addproduct" type="submit" value="Add"></td>
-</tr>
+        <td colspan="5" rowspan="3" height="59" class="xl7413030" width="95" style="height:43.55pt;width:70pt">
+            <label for="producthsn">HSN CODE</label>
+        </td>
+        <td colspan="4" rowspan="3" class="xl7413030" width="76" style="width:56pt"><label
+                for="productrate">RATE</label></td>
+        <td colspan="2" rowspan="3" class="xl7413030" width="38" style="width:28pt"><label
+                for="productquantity">QTY</label></td>
+        <td colspan="5" rowspan="3" class="xl7413030" width="79" style="width:58pt"><label
+                for="productprice">PRICE</label></td>
+        <td colspan="4" rowspan="3" class="xl7413030" width="76" style="width:56pt"><label
+                for="productdiscount">DISCOUNT</label></td>
+        <td colspan="4" rowspan="3" class="xl7413030" width="76" style="width:56pt"><label for="productvalue">TAXABLE
+                VALUE</label></td>
+        <td colspan="5" rowspan="3" class="xl7413030" width="95" style="width:70pt"><label for="productgst">AGGREGATE
+                GST</label></td>
+        <td colspan="5" rowspan="3" class="xl7413030" width="84" style="width:62pt"><label
+                for="productamount">AMOUNT</label></td>
+        <td colspan="4" rowspan="3" class="xl7413030" width="76" style="width:56pt">ACTION</td>
+    </tr>
+    <tr class="xl6613030" height="20" style="height:14.65pt">
+    </tr>
+    <tr class="xl6613030" height="20" style="height:14.65pt">
+    </tr>
+    <tr height="19" style="height:14.25pt">
+        <td colspan="5" rowspan="3" height="59" class="xl7013030" width="95" style="height:44pt;width:70pt"><input
+                id="producthsn" name="producthsn" style="width:70pt" type="text" value="{{ values[1] }}" width="95"></td>
+        <td colspan="4" rowspan="3" class="xl7013030" width="76" style="width:56pt"><input
+                hx-get="/productfields-revalidate" hx-include="#productdetailsform" hx-target="#productdetailsfields"
+                id="productrate" name="productrate" required="" style="width:56pt" type="text" value="{{ values[2] }}" width="76"></td>
+        <td colspan="2" rowspan="3" class="xl7013030" width="38" style="width:28pt"><input
+                hx-get="/productfields-revalidate" hx-include="#productdetailsform" hx-target="#productdetailsfields"
+                id="productquantity" max="30" min="1" name="productquantity" required="" style="width:28pt"
+                type="number" value="{{ values[3] }}" width="38"></td>
+        <td colspan="5" rowspan="3" class="xl7013030" width="79" style="width:58pt"><input id="productprice"
+                name="productprice" required="" style="width:58pt" type="text" value="{{ values[4] }}" width="79"></td>
+        <td colspan="4" rowspan="3" class="xl7013030" width="76" style="width:56pt"><input
+                hx-get="/productfields-revalidate" hx-include="#productdetailsform" hx-target="#productdetailsfields"
+                id="productdiscount" name="productdiscount" style="width:56pt" type="text" value="{{ values[5] }}" width="76"></td>
+        <td colspan="4" rowspan="3" class="xl7013030" width="76" style="width:56pt"><input id="productvalue"
+                name="productvalue" required="" style="width:56pt" type="text" value="{{ values[6] }}" width="76"></td>
+        <td colspan="5" rowspan="3" class="xl7013030" width="95" style="width:70pt"><input id="productgst"
+                name="productgst" required="" style="width:70pt" type="text" value="{{ values[7] }}" width="95"></td>
+        <td colspan="5" rowspan="3" class="xl7013030" width="84" style="width:62pt"><input id="productamount"
+                name="productamount" required="" style="width:62pt" type="text" value="{{ values[8] }}" width="84"></td>
+        <td colspan="4" rowspan="3" class="xl7013030" width="76" style="width:56pt"><input class="btn btn-primary" height="38" id="addproduct" name="addproduct" 
+        style="width:28pt;height:28pt;font-size:18.0pt;vertical-align:top;padding-top:0pt;padding-bottom:28pt" type="submit" value="+" width="38"></td>
+    </tr>
 </tbody>

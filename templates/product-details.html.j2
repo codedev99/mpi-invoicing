@@ -4,111 +4,284 @@
 {% endblock %}
 
 {% block body %}
+<style id="Book1_13030_Styles">
+    <!--table
+    .xl6613030 {
+        padding: 0px;
+        mso-ignore: padding;
+        color: black;
+        font-size: 11.0pt;
+        font-weight: 400;
+        font-style: normal;
+        text-decoration: none;
+        font-family: Calibri, sans-serif;
+        mso-font-charset: 0;
+        mso-number-format: General;
+        text-align: center;
+        vertical-align: middle;
+        mso-background-source: auto;
+        mso-pattern: auto;
+        white-space: normal;
+    }
 
+    .xl7413030 {
+        padding: 0px;
+        mso-ignore: padding;
+        color: #3F3F3F;
+        font-size: 11.0pt;
+        font-weight: 700;
+        font-style: normal;
+        text-decoration: none;
+        font-family: Calibri, sans-serif;
+        mso-font-charset: 0;
+        mso-number-format: General;
+        text-align: center;
+        vertical-align: middle;
+        border: 1.0pt solid #3F3F3F;
+        background: #F2F2F2;
+        mso-pattern: black none;
+        white-space: normal;
+    }
+
+    .xl7013030 {
+        padding: 0px;
+        mso-ignore: padding;
+        color: black;
+        font-size: 11.0pt;
+        font-weight: 400;
+        font-style: normal;
+        text-decoration: none;
+        font-family: Calibri, sans-serif;
+        mso-font-charset: 0;
+        mso-number-format: General;
+        text-align: center;
+        vertical-align: middle;
+        border-top: none;
+        border-right: none;
+        border-bottom: .5pt solid #3F3F3F;
+        border-left: none;
+        mso-background-source: auto;
+        mso-pattern: auto;
+        white-space: normal;
+    }
+
+    .xcustomtext {
+        padding: 0px;
+        mso-ignore: padding;
+        color: black;
+        font-size: 11.0pt;
+        font-weight: 400;
+        font-style: normal;
+        text-decoration: none;
+        font-family: Calibri, sans-serif;
+        mso-font-charset: 0;
+        mso-number-format: General;
+        text-align: center;
+        vertical-align: middle;
+        white-space: normal;
+    }
+
+    .xl6513030 {
+        padding: 0px;
+        mso-ignore: padding;
+        color: black;
+        font-size: 11.0pt;
+        font-weight: 400;
+        font-style: normal;
+        text-decoration: none;
+        font-family: Calibri, sans-serif;
+        mso-font-charset: 0;
+        mso-number-format: General;
+        text-align: general;
+        vertical-align: middle;
+        mso-background-source: auto;
+        mso-pattern: auto;
+        white-space: nowrap;
+    }
+
+    .xl7113030 {
+        padding: 0px;
+        mso-ignore: padding;
+        color: black;
+        font-size: 11.0pt;
+        font-weight: 700;
+        font-style: normal;
+        text-decoration: none;
+        font-family: Calibri, sans-serif;
+        mso-font-charset: 0;
+        mso-number-format: General;
+        text-align: left;
+        vertical-align: middle;
+        border: 1.0pt solid #3F3F3F;
+        background: #F2F2F2;
+        mso-pattern: black none;
+        white-space: nowrap;
+    }
+
+    .xl7313030 {
+			padding: 0px;
+			mso-ignore: padding;
+			color: black;
+			font-size: 11.0pt;
+			font-weight: 400;
+			font-style: normal;
+			text-decoration: none;
+			font-family: Calibri, sans-serif;
+			mso-font-charset: 0;
+			mso-number-format: General;
+			text-align: center;
+			vertical-align: middle;
+			border: 1.0pt solid #3F3F3F;
+			background: #F2F2F2;
+			mso-pattern: black none;
+			white-space: nowrap;
+		}
+
+    .xl8013030 {
+			padding: 0px;
+			mso-ignore: padding;
+			color: black;
+			font-size: 11.0pt;
+			font-weight: 400;
+			font-style: normal;
+			text-decoration: none;
+			font-family: Calibri, sans-serif;
+			mso-font-charset: 0;
+			mso-number-format: General;
+			text-align: center;
+			vertical-align: bottom;
+			border-top: 1.0pt solid #3F3F3F;
+			border-right: none;
+			border-bottom: none;
+			border-left: none;
+			mso-background-source: auto;
+			mso-pattern: auto;
+			white-space: nowrap;
+		}
+    -->
+</style>
 <h1>Invoice Details</h1>
-<br/>
+<br />
 <form method="POST">
     {{ form.csrf_token }}
-    <table id="productdetailsform">   
+
+    <table id="productdetailsform" border=0 cellpadding=0 cellspacing=0 width=885 style='border-collapse:
+    collapse;table-layout:fixed;width:652pt'>
         <tr>
-            <td>
-                <table id="productnameselect" style="width: 150px;">
-                    <tr>
-                        <thead style="text-align: center; font-weight: bold;">
-                            <td>{{ form.productname.label(class="form-label") }}</td>
-                        </thead>
+            <td colspan=10 width=190 style='width:140pt'>
+                <table id="productnameselect" border=0 cellpadding=0 cellspacing=0 width=190 style='border-collapse:
+    collapse;table-layout:fixed;width:140pt'>
+                    <tr class=xl6613030 height=19 style='mso-height-source:userset;height:14.25pt'>
+                        <td colspan=2 rowspan=3 height=59 class=xl7413030 width=38 style='height:
+    43.55pt;width:28pt'>SR. NO.</td>
+                        <td colspan=8 rowspan=3 class=xl7413030 width=152 style='width:112pt'>{{ form.productname.label }}</td>
                     </tr>
-                    <tr>
-                        <td>{{ form.productname(**{"style": "width:100%;", "hx-get": "/productname-revalidate", "hx-include": "#productdetailsform", "hx-target": "#productdetailsfields"}) }}</td>
+                    <tr class=xl6613030 height=20 style='height:14.65pt'>
+                    </tr>
+                    <tr class=xl6613030 height=20 style='height:14.65pt'>
+                    </tr>
+                    <tr height=19 style='height:14.25pt'>
+                        <td colspan=2 rowspan=3 height=59 class=xl7013030 width=38 style='height:
+    43.55pt;width:28pt'></td>
+                        <td colspan=8 rowspan=3 class=xl7013030 width=152 style='width:112pt'>{{ form.productname(**{"class":"xcustomtext", "height":"59", "width":"152", "style":'height:43.55pt; width:112pt', "hx-get": "/productname-revalidate",
+                            "hx-include": "#productdetailsform", "hx-target": "#productdetailsfields"}) }}</td>
                     </tr>
                 </table>
             </td>
-            <td>
-                <table id="productdetailsfields" style="width: 100%;">
-                    <tr>
-                        <thead style="text-align: center; font-weight: bold;">
-                            <td>{{ form.producthsn.label(class="form-label") }}</td>
-                            <td>{{ form.productrate.label(class="form-label") }}</td>
-                            <td>{{ form.productquantity.label(class="form-label") }}</td>
-                            <td>{{ form.productprice.label(class="form-label") }}</td>
-                            <td>{{ form.productdiscount.label(class="form-label") }}</td>
-                            <td>{{ form.productvalue.label(class="form-label") }}</td>
-                            <td>{{ form.productgst.label(class="form-label") }}</td>
-                            <td>{{ form.productamount.label(class="form-label") }}</td>
-                        </thead>
+            <td colspan=10 width=695 style='width:512pt'>
+                <table id="productdetailsfields" border=0 cellpadding=0 cellspacing=0 width=695 style='border-collapse:
+    collapse;table-layout:fixed;width:512pt'>
+                    <tr class=xl6613030 height=19 style='mso-height-source:userset;height:14.25pt'>
+
+                        <td colspan=5 rowspan=3 height=59 class=xl7413030 width=95 style='height:43.55pt;width:70pt'>{{ form.producthsn.label }}</td>
+                        <td colspan=4 rowspan=3 class=xl7413030 width=76 style='width:56pt'>{{ form.productrate.label }}</td>
+                        <td colspan=2 rowspan=3 class=xl7413030 width=38 style='width:28pt'>{{ form.productquantity.label }}</td>
+                        <td colspan=5 rowspan=3 class=xl7413030 width=79 style='width:58pt'>{{ form.productprice.label }}</td>
+                        <td colspan=4 rowspan=3 class=xl7413030 width=76 style='width:56pt'>{{ form.productdiscount.label }}</td>
+                        <td colspan=4 rowspan=3 class=xl7413030 width=76 style='width:56pt'>{{ form.productvalue.label }}</td>
+                        <td colspan=5 rowspan=3 class=xl7413030 width=95 style='width:70pt'>{{ form.productgst.label }}</td>
+                        <td colspan=5 rowspan=3 class=xl7413030 width=84 style='width:62pt'>{{ form.productamount.label }}</td>
+                        <td colspan=4 rowspan=3 class=xl7413030 width=76 style='width:56pt'>ACTION</td>
                     </tr>
-                    <tr>
-                        <td>{{ form.producthsn }}</td>
-                        <td>{{ form.productrate(**{"hx-get": "/productfields-revalidate", "hx-include": "#productdetailsform", "hx-target": "#productdetailsfields"}) }}</td>
-                        <td>{{ form.productquantity(**{"hx-get": "/productfields-revalidate", "hx-include": "#productdetailsform", "hx-target": "#productdetailsfields"}) }}</td>
-                        <td>{{ form.productprice }}</td>
-                        <td>{{ form.productdiscount(**{"hx-get": "/productfields-revalidate", "hx-include": "#productdetailsform", "hx-target": "#productdetailsfields"}) }}</td>
-                        <td>{{ form.productvalue }}</td>
-                        <td>{{ form.productgst }}</td>
-                        <td>{{ form.productamount }}</td>
-                        <td>{{ form.addproduct }}</td>
+                    <tr class=xl6613030 height=20 style='height:14.65pt'>
+                    </tr>
+                    <tr class=xl6613030 height=20 style='height:14.65pt'>
+                    </tr>
+                    <tr height=19 style='height:14.25pt'>
+                        <td colspan=5 rowspan=3 height=59 class=xl7013030 width=95 style='height:44pt;width:70pt'>{{ form.producthsn(width=95, style='width:70pt') }}</td>
+                        <td colspan=4 rowspan=3 class=xl7013030 width=76 style='width:56pt'>{{ form.productrate(**{"width":"76", "style":'width:56pt', "hx-get": "/productfields-revalidate", "hx-include":
+                            "#productdetailsform", "hx-target": "#productdetailsfields"}) }}</td>
+                        <td colspan=2 rowspan=3 class=xl7013030 width=38 style='width:28pt'>{{ form.productquantity(**{"width":"38", "style":'width:28pt', "hx-get": "/productfields-revalidate", "hx-include":
+                            "#productdetailsform", "hx-target": "#productdetailsfields"}) }}</td>
+                        <td colspan=5 rowspan=3 class=xl7013030 width=79 style='width:58pt'>{{ form.productprice(width=79, style='width:58pt') }}</td>
+                        <td colspan=4 rowspan=3 class=xl7013030 width=76 style='width:56pt'>{{ form.productdiscount(**{"width":"76", 'style':'width:56pt', "hx-get": "/productfields-revalidate", "hx-include":
+                            "#productdetailsform", "hx-target": "#productdetailsfields"}) }}</td>
+                        <td colspan=4 rowspan=3 class=xl7013030 width=76 style='width:56pt'>{{ form.productvalue(width=76, style='width:56pt') }}</td>
+                        <td colspan=5 rowspan=3 class=xl7013030 width=95 style='width:70pt'>{{ form.productgst(width=95, style='width:70pt') }}</td>
+                        <td colspan=5 rowspan=3 class=xl7013030 width=84 style='width:62pt'>{{ form.productamount(width=84, style='width:62pt') }}</td>
+                        <td colspan=4 rowspan=3 class=xl7013030 width=76 style='width:56pt'>{{ form.addproduct(value="+", class="btn btn-primary", width=38, height=38, 
+                        style="width:28pt;height:28pt;font-size:18.0pt;vertical-align:top;padding-top:0pt;padding-bottom:28pt") }}</td>
                     </tr>
                 </table>
             </td>
         </tr>
     </table>
 </form>
-<table cellpadding=5 cellspacing=5 id="itemslisttable" style="margin-top: 20px;">
-    <tr>
-        <thead style="text-align: center; font-weight: bold; border-bottom: 3px solid #aaa;">
-            <td>Name</td>
-            <td>HSN</td>
-            <td>Rate</td>
-            <td>Quantity</td>
-            <td>Price</td>
-            <td>Discount</td>
-            <td>Taxable Value</td>
-            <td>Aggregate GST (%)</td>
-            <td>Amount</td>
-        </thead>
-    </tr>
-    <tbody style="text-align: center;">
+
+<table border=0 cellpadding=0 cellspacing=0 width=885 style='border-collapse:
+ collapse;table-layout:fixed;width:652pt'>
     {% for item in itemslist %}
-    <tr>
-        <td>{{ item.name }}</td>
-        <td>{{ item.hsn }}</td>
-        <td>{{ item.rate }}</td>
-        <td>{{ item.quantity }}</td>
-        <td>{{ item.price }}</td>
-        <td>{{ item.discount }}</td>
-        <td>{{ item.value }}</td>
-        <td>{{ item.gst }}</td>
-        <td>{{ item.amount }}</td>
-        <td><a href="/delete/{{item.id}}">
-            <button type="button" class="btn btn-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"></path>
-                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"></path>
-                </svg>
-                Delete Product
-            </button>
-        </a>
+    {% if loop.index != 1 %}
+    <tr height=19 style='height:14.25pt'>
+    </tr>
+    {% endif %}
+    <tr height=19 style='height:14.25pt'>
+        <td colspan=2 rowspan=2 height=39 class=xl7013030 width=38 style='height:
+  28.9pt;width:28pt'>{{ loop.index }}</td>
+        <td colspan=8 rowspan=2 class=xl7013030 width=152 style='width:112pt'>{{ item.name }}</td>
+        <td colspan=5 rowspan=2 class=xl7013030 width=95 style='width:70pt'>{{ item.hsn }}</td>
+        <td colspan=4 rowspan=2 class=xl7013030 width=76 style='width:56pt'>{{item.rate }}</td>
+        <td colspan=2 rowspan=2 class=xl7013030 width=38 style='width:28pt'>{{item.quantity }}</td>
+        <td colspan=5 rowspan=2 class=xl7013030 width=79 style='width:58pt'>{{item.price }}</td>
+        <td colspan=4 rowspan=2 class=xl7013030 width=76 style='width:56pt'>{{item.discount }}</td>
+        <td colspan=4 rowspan=2 class=xl7013030 width=76 style='width:56pt'>{{item.value }}</td>
+        <td colspan=5 rowspan=2 class=xl7013030 width=95 style='width:70pt'>{{item.gst }}</td>
+        <td colspan=5 rowspan=2 class=xl7013030 width=84 style='width:62pt'>{{item.amount }}</td>
+        <td colspan=4 rowspan=2 class=xl7013030 width=76 style='width:56pt'>
+            <a href="/delete/{{item.id}}">
+                <button type="button" class="btn btn-secondary" width=38 height=38 style="width:28pt;height:28pt;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-trash" viewBox="2 0 16 16">
+                        <path
+                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z">
+                        </path>
+                        <path
+                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z">
+                        </path>
+                    </svg>
+                </button>
+            </a>
         </td>
     </tr>
     {% endfor %}
     {% if itemslist|length > 0 %}
-    <tr>
-        <td>Subtotal</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>{{ subtotals[0] }}</td>
-        <td>{{ subtotals[1] }}</td>
-        <td>{{ subtotals[2] }}</td>
-        <td>{{ subtotals[3] }}</td>
+    <tr height=20 style='height:14.65pt'>
+    </tr>
+    <tr class=xl6513030 height=20 style='height:14.65pt'>
+        <td colspan=26 height=20 class=xl7113030 style='height:14.65pt'>SUBTOTAL</td>
+        <td colspan=4 class=xl7313030 style='border-left:none'>{{ subtotals[0] }}</td>
+        <td colspan=4 class=xl7313030 style='border-left:none'>{{ subtotals[1] }}</td>
+        <td colspan=5 class=xl7313030 style='border-left:none'>{{ subtotals[2] }}</td>
+        <td colspan=5 class=xl7313030 style='border-left:none'>{{ subtotals[3] }}</td>
+        <td colspan=4 class=xl7313030 style='border-left:none'></td>
+    </tr>
+    <tr height=19 style='height:14.25pt'>
+        <td colspan=44 height=19 class=xl8013030 style='height:14.25pt'>&nbsp;</td>
     </tr>
     {% endif %}
-    </tbody>
 </table>
 <a href="/generate-invoice">
     <button class="btn btn-primary">Submit</button>
 </a>
-
-
+<br><br><br>
 {% endblock %}

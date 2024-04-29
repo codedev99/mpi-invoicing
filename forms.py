@@ -50,15 +50,15 @@ class InvoiceDetailsForm(Form):
     submit = SubmitField("Submit")
 
 class ProductDeatilsForm(AllForms):
-    productname = QuerySelectField("Select Product",
+    productname = QuerySelectField("PRODUCT",
                                    query_factory=lambda: ProductList.query.order_by(ProductList.product_name).all(),
                                    allow_blank=True, get_label="product_name", validators=[InputRequired()])
-    producthsn = StringField("HSN", validators=[Optional()])
-    productrate = FloatField("Rate", validators=[InputRequired()])
-    productquantity = h5fields.IntegerField("Quantity", widget=h5widgets.NumberInput(min=1, max=30), validators=[InputRequired()])
-    productprice = FloatField("Price", validators=[InputRequired()])
-    productdiscount = FloatField("Discount", validators=[Optional()], default=0)
-    productvalue = FloatField("Taxable Value", validators=[InputRequired()])
-    productgst = FloatField("Aggregate GST", validators=[InputRequired()])
-    productamount = FloatField("Amount", validators=[InputRequired()])
-    addproduct = SubmitField("Add")
+    producthsn = StringField("HSN CODE", validators=[Optional()])
+    productrate = FloatField("RATE", validators=[InputRequired()])
+    productquantity = h5fields.IntegerField("QTY", widget=h5widgets.NumberInput(min=1, max=30), validators=[InputRequired()])
+    productprice = FloatField("PRICE", validators=[InputRequired()])
+    productdiscount = FloatField("DISCOUNT", validators=[Optional()], default=0)
+    productvalue = FloatField("TAXABLE VALUE", validators=[InputRequired()])
+    productgst = FloatField("AGGREGATE GST", validators=[InputRequired()])
+    productamount = FloatField("AMOUNT", validators=[InputRequired()])
+    addproduct = SubmitField("")

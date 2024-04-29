@@ -9,3 +9,4 @@ if __name__ == "__main__":
         add_data()
     
     app.run(host=ipadd)
+    # app.run(debug=True)
