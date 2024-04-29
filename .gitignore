@@ -1,3 +1,5 @@
 instance/*
 __pycache__/*
-taxinvoice/*
+tax-invoice/*
+!tax-invoice/TaxInvoicePublished_files/
+env/*
