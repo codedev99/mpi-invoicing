@@ -1,0 +1,14 @@
+{% extends 'base.html.j2' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<form method="POST">
+    <h3>Enter file name</h3>
+    <input type="text" name="content" id="content">
+    <input type="submit" value="Save">
+</form>
+<br/>
+<h5>{{ message }}</h5>
+{% endblock %}

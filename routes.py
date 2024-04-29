@@ -2,9 +2,10 @@ from flask import Blueprint, render_template, request, url_for, redirect
 from extensions import db
 from forms import PartyDetailsForm, InvoiceDetailsForm, ProductDeatilsForm
 from models import ProductList, ItemsList
-from utils import FormData
+from utils import FormData, generateInvoice, getSubtotals
 
 main = Blueprint("main", __name__)
+global formdata
 formdata = FormData()
 
 @main.route('/', methods=["GET", "POST"])
@@ -12,38 +13,36 @@ def partyDetailsPage():
     form = PartyDetailsForm(request.form)
     formdata = FormData()
     if request.method == "POST":
-        formdata.valuelist[formdata.keylist[0]] = form.name.data
-        formdata.valuelist[formdata.keylist[1]] = form.address.data
-        formdata.valuelist[formdata.keylist[2]] = form.pannumber.data
+        formdata.valuelist[formdata.keylist[0]] = " " if form.name.data == "" else form.name.data
+        formdata.valuelist[formdata.keylist[1]] = " " if form.address.data == "" else form.address.data
+        formdata.valuelist[formdata.keylist[2]] = " " if form.pannumber.data == "" else form.pannumber.data
         phno = form.phonenumber.data
-        formdata.valuelist[formdata.keylist[3]] = "" if phno is None else str(phno)
-        formdata.valuelist[formdata.keylist[4]] = form.gstin.data
+        formdata.valuelist[formdata.keylist[3]] = " " if phno is None else str(phno)
+        formdata.valuelist[formdata.keylist[4]] = " " if form.gstin.data == "" else form.gstin.data
 
         return redirect('/invoice-details')
     
-    return render_template('party-details.html', form=form)
+    return render_template('party-details.html.j2', form=form)
 
 @main.route('/invoice-details', methods=["GET", "POST"])
 def invoiceDetailsPage():
     form = InvoiceDetailsForm(request.form)
     if request.method == "POST":
-        formdata.valuelist[formdata.keylist[5]] = form.invoicenumber.data
-        formdata.valuelist[formdata.keylist[6]] = str(form.invoicedate.data.strftime("%d/%m/%Y"))
+        formdata.valuelist[formdata.keylist[5]] = " " if form.invoicenumber.data == "" else form.invoicenumber.data
+        formdata.valuelist[formdata.keylist[6]] = " " if form.invoicedate.data is None else str(form.invoicedate.data.strftime("%d/%m/%Y"))
         dos = form.dateofsupply.data
-        formdata.valuelist[formdata.keylist[7]] = "" if dos is None else str(dos.strftime("%d/%m/%Y"))
-        formdata.valuelist[formdata.keylist[8]] = form.placeofsupply.data
+        formdata.valuelist[formdata.keylist[7]] = " " if dos is None else str(dos.strftime("%d/%m/%Y"))
+        formdata.valuelist[formdata.keylist[8]] = " " if form.placeofsupply.data == "" else form.placeofsupply.data
         formdata.valuelist[formdata.keylist[9]] = "Y" if form.reversecharge.data else "N"
-        formdata.valuelist[formdata.keylist[10]] = form.transportmode.data
-        formdata.valuelist[formdata.keylist[11]] = form.vehiclenumber.data
+        formdata.valuelist[formdata.keylist[10]] = " " if form.transportmode.data == "" else form.transportmode.data
+        formdata.valuelist[formdata.keylist[11]] = " " if form.vehiclenumber.data == "" else form.vehiclenumber.data
 
         return redirect('/product-details')
 
-    return render_template('invoice-details.html', form=form)
+    return render_template('invoice-details.html.j2', form=form)
 
 @main.route('/product-details', methods=["GET", "POST"])
 def productDetailsPage():
-    for key in formdata.keylist:
-        print(key, ":  ", formdata.valuelist[key])
     form = ProductDeatilsForm(request.form)
 
     if form.validate_on_submit():
@@ -54,10 +53,13 @@ def productDetailsPage():
                              amount= form.productamount.data)
         db.session.add(new_item)
         db.session.commit()
-
         return redirect('/product-details')
+    
     itemslist = ItemsList.query.all()
-    return render_template('product-details.html', form=form, itemslist=itemslist)
+    subtotals = [0., 0., 0., 0.]
+    if len(itemslist) > 0:
+        subtotals = getSubtotals()
+    return render_template('product-details.html.j2', form=form, itemslist=itemslist, subtotals=subtotals)
 
 def fetchValues():
     fields = [{"key":"productname", "type":int}, {"key":"producthsn", "type":str},
@@ -94,15 +96,40 @@ def productnameRevalidate():
     values[7] = product.gst
     values = calcValues(values)
 
-    return render_template("rerender-product-details.html", values=values)
+    return render_template("rerender-product-details.html.j2", values=values)
 
 @main.route('/productfields-revalidate')
 def productFieldsRevalidate():
     values = fetchValues()
     values = calcValues(values)
 
-    return render_template("rerender-product-details.html", values=values)
+    return render_template("rerender-product-details.html.j2", values=values)
 
-@main.route('/render-invoice')
+@main.route('/generate-invoice')
+def generateInvoicePage():
+    formdata.parsed_template = generateInvoice(formdata)
+
+    return redirect('/render-invoice')
+
+@main.route('/render-invoice', methods=["GET", "POST"])
 def renderInvoicePage():
-    return "Pass"
+    message = ""
+    if request.method == "POST":
+        filename = request.form["content"].split('/')[-1].split('.')[0]
+        filename = "./tax-invoice/" + filename + ".htm"
+        with open(filename, 'w') as page:
+            page.write(formdata.parsed_template)
+        message = "File saved to " + filename + ". Open and PRINT AS PDF to save."
+    
+    return render_template('render-invoice.html.j2', message=message)
+
+@main.route('/delete/<int:id>')
+def deleteItem(id):
+    item_to_delete = ItemsList.query.get_or_404(id)
+
+    try:
+        db.session.delete(item_to_delete)
+        db.session.commit()
+        return redirect('/product-details')
+    except:
+        return "Error deleting item"

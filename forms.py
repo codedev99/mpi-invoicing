@@ -57,7 +57,7 @@ class ProductDeatilsForm(AllForms):
     productrate = FloatField("Rate", validators=[InputRequired()])
     productquantity = h5fields.IntegerField("Quantity", widget=h5widgets.NumberInput(min=1, max=30), validators=[InputRequired()])
     productprice = FloatField("Price", validators=[InputRequired()])
-    productdiscount = FloatField("Discount", validators=[Optional()])
+    productdiscount = FloatField("Discount", validators=[Optional()], default=0)
     productvalue = FloatField("Taxable Value", validators=[InputRequired()])
     productgst = FloatField("Aggregate GST", validators=[InputRequired()])
     productamount = FloatField("Amount", validators=[InputRequired()])
