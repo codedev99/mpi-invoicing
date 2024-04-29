@@ -28,10 +28,3 @@ def add_data():
     arr = fill_table("product-list.csv")
     db.session.add_all(arr)
     db.session.commit()
-
-if __name__ == "__main__":
-    app = create_app()
-    with app.app_context():
-        add_data()
-    
-    app.run(debug=True)

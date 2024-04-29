@@ -1,5 +1,3 @@
-*/__pycache__/*
-*/instance/*
+instance/*
 __pycache__/*
 taxinvoice/*
-!taxinvoice/TaxInvoicePublished_files/
