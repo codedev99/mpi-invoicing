@@ -480,15 +480,15 @@ tags will be replaced.-->
   43.55pt;width:28pt'>SR. NO.</td>
 				<td colspan=8 rowspan=3 class=xl7413030 width=152 style='width:112pt'>PRODUCT</td>
 				<td colspan=5 rowspan=3 class=xl7413030 width=95 style='width:70pt'>HSN CODE</td>
-				<td colspan=4 rowspan=3 class=xl7413030 width=76 style='width:56pt'>RATE</td>
+				<td colspan=4 rowspan=3 class=xl7413030 width=76 style='width:56pt'>RATE<br>(INR)</td>
 				<td colspan=2 rowspan=3 class=xl7413030 width=38 style='width:28pt'>QTY</td>
-				<td colspan=5 rowspan=3 class=xl7413030 width=79 style='width:58pt'>PRICE</td>
-				<td colspan=4 rowspan=3 class=xl7413030 width=76 style='width:56pt'>DISCOUNT</td>
+				<td colspan=5 rowspan=3 class=xl7413030 width=79 style='width:58pt'>PRICE<br>(INR)</td>
+				<td colspan=4 rowspan=3 class=xl7413030 width=76 style='width:56pt'>DISCOUNT<br>(INR)</td>
 				<td colspan=4 rowspan=3 class=xl7413030 width=76 style='width:56pt'>TAXABLE
-					VALUE</td>
-				<td colspan=5 rowspan=3 class=xl7413030 width=95 style='width:70pt'>AGGREGATE
-					GST</td>
-				<td colspan=5 rowspan=3 class=xl7413030 width=84 style='width:62pt'>AMOUNT</td>
+					VALUE<br>(INR)</td>
+				<td colspan=3 rowspan=3 class=xl7413030 width=53 style='width:39pt'>CGST<br>(INR)</td>
+				<td colspan=3 rowspan=3 class=xl7413030 width=53 style='width:39pt'>SGST<br>(INR)</td>
+				<td colspan=4 rowspan=3 class=xl7413030 width=73 style='width:54pt'>AMOUNT<br>(INR)</td>
 			</tr>
 			<tr class=xl6613030 height=20 style='height:14.65pt'>
 			</tr>
@@ -509,8 +509,9 @@ tags will be replaced.-->
 				<td colspan=5 rowspan=2 class=xl7013030 width=79 style='width:58pt'>{{item[4] }}</td>
 				<td colspan=4 rowspan=2 class=xl7013030 width=76 style='width:56pt'>{{item[5] }}</td>
 				<td colspan=4 rowspan=2 class=xl7013030 width=76 style='width:56pt'>{{item[6] }}</td>
-				<td colspan=5 rowspan=2 class=xl7013030 width=95 style='width:70pt'>{{item[7] }}</td>
-				<td colspan=5 rowspan=2 class=xl7013030 width=84 style='width:62pt'>{{item[8] }}</td>
+				<td colspan=3 rowspan=2 class=xl7013030 width=53 style='width:39pt'>{{item[7] }}</td>
+				<td colspan=3 rowspan=2 class=xl7013030 width=53 style='width:39pt'>{{item[8] }}</td>
+				<td colspan=4 rowspan=2 class=xl7013030 width=73 style='width:54pt'>{{item[9] }}</td>
 			</tr>
 			{% endfor %}
 			<tr height=20 style='height:14.65pt'>
@@ -519,8 +520,9 @@ tags will be replaced.-->
 				<td colspan=26 height=20 class=xl7113030 style='height:14.65pt'>SUBTOTAL</td>
 				<td colspan=4 class=xl7313030 style='border-left:none'>{{ finalvalues[0] }}</td>
 				<td colspan=4 class=xl7313030 style='border-left:none'>{{ finalvalues[1] }}</td>
-				<td colspan=5 class=xl7313030 style='border-left:none'>{{ finalvalues[2] }}</td>
-				<td colspan=5 class=xl7313030 style='font-weight:700;border-left:none'>{{ finalvalues[3] }}</td>
+				<td colspan=3 class=xl7313030 style='border-left:none'>{{ finalvalues[2] }}</td>
+				<td colspan=3 class=xl7313030 style='border-left:none'>{{ finalvalues[3] }}</td>
+				<td colspan=4 class=xl7313030 style='font-weight:700;border-left:none'>{{ finalvalues[4] }}</td>
 			</tr>
 			<tr height=19 style='height:14.25pt'>
 				<td colspan=44 height=19 class=xl8013030 style='height:14.25pt'>&nbsp;</td>
@@ -529,13 +531,13 @@ tags will be replaced.-->
 				<td colspan=12 height=19 class=xl6813030 style='height:14.25pt'>Total Invoice
 					Amount (in figures)</td>
 				<td colspan=2 class=xl6813030>:</td>
-				<td colspan=30 class=xl6813030>{{ finalvalues[4] }}</td>
+				<td colspan=30 class=xl6813030>{{ finalvalues[5] }}</td>
 			</tr>
 			<tr class=xl6713030 height=19 style='height:14.25pt'>
 				<td colspan=12 rowspan=2 height=38 class=xl6813030 style='height:28.5pt'>Total
 					Invoice Amount (in words)</td>
 				<td colspan=2 rowspan=2 class=xl6813030>:</td>
-				<td colspan=30 rowspan=2 class=xl6913030 width=543 style='width:400pt'>{{ finalvalues[5] }}</td>
+				<td colspan=30 rowspan=2 class=xl6913030 width=543 style='width:400pt'>{{ finalvalues[6] }}</td>
 			</tr>
 			<tr height=19 style='height:14.25pt'>
 			</tr>

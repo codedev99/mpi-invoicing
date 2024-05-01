@@ -80,7 +80,8 @@ def generateInvoice(formdata: FormData):
         arr.append("%.2f"%item.discount)
         arr.append("%.2f"%item.value)
         gstamount = round(item.amount, 2) - round(item.value, 2)
-        arr.append("%.2f"%gstamount + " " + "(%.2f%s)"%(item.gst, '%'))
+        arr.append("%.2f"%(gstamount/2) + " " + "(%.2f%s)"%(item.gst/2, '%')) # divide by 2 for cgst and sgst components
+        arr.append("%.2f"%(gstamount/2) + " " + "(%.2f%s)"%(item.gst/2, '%'))
         arr.append("%.2f"%item.amount)
         items.append(arr)
     
@@ -99,13 +100,17 @@ def getSubtotals():
     subtotals = [db.session.query(functions.sum(ItemsList.discount)).scalar(),
                 db.session.query(functions.sum(ItemsList.value)).scalar(),
                 0.0,
+                0.0,
                 db.session.query(functions.sum(ItemsList.amount)).scalar()]
     itemlist = ItemsList.query.all()
     items = []
+    totgst = 0.0
     for item in itemlist:
         gstamount = round(item.amount, 2) - round(item.value, 2)
-        subtotals[2] += gstamount
+        totgst += gstamount
     
+    subtotals[2] = totgst/2
+    subtotals[3] = totgst/2
     for i in range(len(subtotals)):
         subtotals[i] = "%.2f"%subtotals[i]
 
